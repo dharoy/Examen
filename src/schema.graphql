@@ -1,0 +1,60 @@
+    type Query{
+
+      getEscritor(name:String!):Escritores
+      getEntradas(name: String):[Entradas]
+      getUsuarios(name: String):[Entradas]
+
+    }
+
+    type Mutation{
+
+      addEscritor(name:String!,pass:String!):Escritores!
+      addUsuario(name:String!,pass:String!):Usuarios!
+      publicarEntradatrada(name:String!,token:ID!,date:String!,titulo:String!,contenido:String!):Entradas!
+
+      login(name:String!,pass:String!):Escritores!Usuarios!
+      logout(name:String!,token:ID!):Escritores!Usuarios!     
+      
+      quitarEscritor(name:String!,token:ID!):String
+      quitarUsuario(name:String!,token:ID!):String
+      quitarEntrada(name:String!,token:ID!,id:ID!):String
+
+    }
+
+    type Subscription{
+
+      tellEscritor(id:ID!):Entradas
+      tellEntradaTitulo(titulo:String!):Entradas
+
+    }
+  
+    type Escritores{
+
+      _id: ID!
+      name: String!
+      pass: String!
+      token : ID!
+      entradas : [Entradas]
+
+    }
+
+    type Usuarios{
+
+      _id: ID!
+      name: String!
+      pass: String!
+      token : ID!
+      entradas : [Entradas]
+
+    }
+
+    type Entradas{
+
+      _id: ID!
+      idEscritor : ID!
+      date: String!
+      titulo: String!
+      contenido: String!
+      escritor: Escritores
+
+    }
